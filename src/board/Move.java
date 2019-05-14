@@ -1,6 +1,6 @@
 package board;
 
-public enum Moves {
+public enum Move {
 	// Column Moves: Up and Down
 	C1D, C1U, 
 	C2D, C2U, 
