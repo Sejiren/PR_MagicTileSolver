@@ -13,18 +13,30 @@ public class BoardSequence {
 		this.sequence = sequence;
 	}
 	
-	public BoardSequence rotate (Move move) {
+	public BoardSequence rotate(Move move) {
 		BoardState board_state = this.board_state.rotate(move);
 		String sequence = this.sequence + ", " + move.name();
 		
 		return new BoardSequence(board_state, sequence);
+	}
+	
+	public boolean isSolved() {
+		return this.getBoard_state().isSolved();
 	}
 
 	public BoardState getBoard_state() {
 		return board_state;
 	}
 
+	public void setBoard_state(BoardState board_state) {
+		this.board_state = board_state;
+	}
+
 	public String getSequence() {
 		return sequence;
+	}
+
+	public void setSequence(String sequence) {
+		this.sequence = sequence;
 	}
 }

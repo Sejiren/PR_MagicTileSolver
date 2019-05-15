@@ -5,6 +5,7 @@ package board;
  */
 public class BoardState {
 	
+	private final int SOLUTION_SUM = 15;
 	private int[][] board = new int[3][6];
 
 	public BoardState(int[][] board) {
@@ -89,6 +90,53 @@ public class BoardState {
 		return board_state;
 	}	
 	
+	// Method to tell if a BoardState is a possible solution according to the rules given in the game
+	public boolean isSolved() {
+		boolean solved = false;
+		
+		if (	
+				// Check sums of the left side
+				(board[0][0] + board[0][1] + board[0][2] == SOLUTION_SUM)
+				&& (board[1][0] + board[1][1] + board[1][2] == SOLUTION_SUM)
+				&& (board[2][0] + board[2][1] + board[2][2] == SOLUTION_SUM)
+				
+				&& (board[0][0] + board[1][0] + board[2][0] == SOLUTION_SUM)
+				&& (board[0][1] + board[1][1] + board[2][1] == SOLUTION_SUM)
+				&& (board[0][2] + board[1][2] + board[2][2] == SOLUTION_SUM)
+				
+				&& (board[0][0] + board[1][1] + board[2][2] == SOLUTION_SUM)
+				&& (board[2][0] + board[1][1] + board[0][2] == SOLUTION_SUM)
+				
+				// Check sums of the right side
+				&& (board[0][3] + board[0][4] + board[0][5] == SOLUTION_SUM)
+				&& (board[1][3] + board[1][4] + board[1][5] == SOLUTION_SUM)
+				&& (board[2][3] + board[2][4] + board[2][5] == SOLUTION_SUM)
+				
+				&& (board[0][3] + board[1][3] + board[2][3] == SOLUTION_SUM)
+				&& (board[0][4] + board[1][4] + board[2][4] == SOLUTION_SUM)
+				&& (board[0][5] + board[1][5] + board[2][5] == SOLUTION_SUM)
+				
+				&& (board[0][3] + board[1][4] + board[2][5] == SOLUTION_SUM)
+				&& (board[2][3] + board[1][4] + board[0][5] == SOLUTION_SUM)
+				
+				// Check for same numbers at corresponding positions (except for middle)
+				&& (board[0][0] != board[0][3])
+				&& (board[1][0] != board[1][3])
+				&& (board[2][0] != board[2][3])
+				&& (board[0][1] != board[0][4])
+				
+				&& (board[2][1] != board[2][4])
+				&& (board[0][2] != board[0][5])
+				&& (board[1][2] != board[1][5])
+				&& (board[2][2] != board[2][5])
+				) {
+			solved = true;
+		}
+		
+		return solved;
+	}
+	
+	// Method to tell if two BoadStates are equal: They are equal if the contents of their boards are equal
 	public boolean equals(BoardState board_state) {
 		return (board==board_state.getBoard());
 	}
@@ -126,7 +174,7 @@ public class BoardState {
 	private BoardState rotateDown(int column) {
 		int[][] board = this.board;
 		int temp = board[2][column];
-		for (int i = 1; i >= 0; i++) {
+		for (int i = 1; i >= 0; i--) {
 			board[i+1][column] = board[i][column];
 		}
 		board[0][column] = temp;
