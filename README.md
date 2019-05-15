@@ -1,2 +1,5 @@
 # PR_MagicTileSolver
-Solver for the E18 magic tile puzzle in Devon Corp. building entrance north of Spyce, Obsidia Ward
+
+Project failed:
+
+Turns out brute-forcing a 3x6 sudoku-tile-puzzle takes a lot of computation power, which I could have known had I used a calculator beforehand.
